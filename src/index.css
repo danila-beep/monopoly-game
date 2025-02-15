@@ -1,0 +1,11 @@
+html {
+  font-size: calc(100vw / 1500 * 10);
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
