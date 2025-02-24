@@ -4,6 +4,7 @@ type FiledCardVariantTypes =
   | "parking"
   | "chance"
   | "jail"
+  | "start"
   | "chest";
 
 type FiledCardColorsTypes =
@@ -35,7 +36,18 @@ function FieldCard(props: FiledCardPropsTypes) {
       );
       break;
     case "jail":
-      return undefined;
+      return (
+        <CardWrapper variant={"corner"}>
+          <CardText>{props.title}</CardText>
+        </CardWrapper>
+      );
+      break;
+    case "start":
+      return (
+        <CardWrapper variant={"corner"}>
+          <CardText>{props.title}</CardText>
+        </CardWrapper>
+      );
       break;
     case "chance":
       return undefined;

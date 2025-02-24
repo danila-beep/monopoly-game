@@ -16,8 +16,8 @@ function GameField() {
         />
         <FieldCard
           color="red"
-          title="Название карточки"
-          price={123}
+          title="Kentucky Avenue"
+          price={220}
         />
         <FieldCard
           color="red"
@@ -66,9 +66,9 @@ function GameField() {
       >
         <FieldCard
           color="red"
-          title="Название карточки"
+          title="In jail"
           price={123}
-          cardType="parking"
+          cardType="jail"
         />
         <FieldCard
           color="red"
@@ -131,9 +131,9 @@ function GameField() {
       >
         <FieldCard
           color="red"
-          title="Название карточки"
+          title="Salary"
           price={123}
-          cardType="parking"
+          cardType="start"
         />
         <FieldCard
           color="red"
@@ -187,9 +187,9 @@ function GameField() {
       >
         <FieldCard
           color="red"
-          title="Название карточки"
+          title="In jail"
           price={123}
-          cardType="parking"
+          cardType="jail"
         />
         <FieldCard
           color="red"
