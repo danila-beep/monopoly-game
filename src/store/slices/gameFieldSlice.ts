@@ -1,27 +1,15 @@
-// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { FieldDataType, gameFieldPoints } from "../../data/gameFieldData";
 
-// interface FieldPlaceData {
-//   id: number,
-//   name: string;
-//   balance: number;
-//   currentPosition: number;
-// }
+const initialState: FieldDataType = gameFieldPoints
 
-// interface Field {
-//   usersList: UserData[]
-// }
+export const gameFieldSlice = createSlice({
+  name: "gameField",
+  initialState,
+  reducers: {
+    
+  },
+});
 
-// const initialState: usersState = {
-//   usersList: []
-// };
-
-// export const gameFieldSlice = createSlice({
-//   name: "gameField",
-//   initialState,
-//   reducers: {
-
-//   },
-// });
-
-// export const { addUser, removeUser, updateUser } = usersSlice.actions
-// export default usersSlice.reducer
+// export const { ... } = gameFieldSlice.actions
+export default gameFieldSlice.reducer

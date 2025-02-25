@@ -1,11 +1,10 @@
-import './App.css'
-import GameField from './components/GameField'
+import "./App.css";
+import GameField from "./components/GameField";
 
 function App() {
-
   return (
-      <GameField />
-  )
+    <GameField />
+  );
 }
 
-export default App
+export default App;

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { usersSlice } from './slices/usersSlice'
+import { gameFieldSlice } from './slices/gameFieldSlice'
 
 export const store = configureStore({
   reducer: {
-    users: usersSlice.reducer
+    users: usersSlice.reducer,
+    gameFieldPoints: gameFieldSlice.reducer
   },
 })
 

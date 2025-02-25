@@ -5,6 +5,8 @@ interface UserData {
   name: string;
   balance: number;
   currentPosition: number;
+
+  fildsInProperty: [];
 }
 
 interface usersState {

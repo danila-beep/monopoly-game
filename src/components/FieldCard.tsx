@@ -1,93 +1,101 @@
 import styled from "styled-components";
+import { FieldPlaceDataType, FieldPoinsColor } from "../data/gameFieldData";
 
-type FiledCardVariantTypes =
-  | "parking"
-  | "chance"
-  | "jail"
-  | "start"
-  | "chest";
+type FieldCardPropsType = FieldPlaceDataType;
 
-type FiledCardColorsTypes =
-  | "red"
-  | "yellow"
-  | "green"
-  | "darkblue"
-  | "brown"
-  | "lightblue"
-  | "purple"
-  | "orange";
+function FieldCard(props: FieldCardPropsType) {
 
-type FiledCardPropsTypes = {
-  color: FiledCardColorsTypes;
-  title: string;
-  price: number;
+    const getCurrentCardPosition = () => {
+        if (props.id <= 11) {
+            return {
+                row: 1,
+                column: props.id
+            }
+        }
+        if (props.id > 11 && props.id <= 21) {
+            return {
+                row: props.id - 10,
+                column: 11
+            }
+        }
+        if (props.id > 21 && props.id <= 31) {
+            return {
+                row: 11,
+                column: 11 - (props.id - 21)
+            }
+        }
+        if (props.id > 31 && props.id <= 41) {
+            return {
+                row: 11 - (props.id - 31),
+                column: 1
+            }
+        }
+    }
 
-  cardType?: FiledCardVariantTypes;
-  isSide?: boolean;
-};
+  return (
+    <FieldCardWrapper rowPlacement={getCurrentCardPosition()?.row} columnPlacement={getCurrentCardPosition()?.column}>
+      {props.cardType === "common" && props.color ? (
+        <FieldCardTop cardColor={props.color} />
+      ) : undefined}
 
-function FieldCard(props: FiledCardPropsTypes) {
-  switch (props.cardType) {
-    case "parking":
-      return (
-        <CardWrapper variant={"corner"}>
-          <CardText>{props.title}</CardText>
-        </CardWrapper>
-      );
-      break;
-    case "jail":
-      return (
-        <CardWrapper variant={"corner"}>
-          <CardText>{props.title}</CardText>
-        </CardWrapper>
-      );
-      break;
-    case "start":
-      return (
-        <CardWrapper variant={"corner"}>
-          <CardText>{props.title}</CardText>
-        </CardWrapper>
-      );
-      break;
-    case "chance":
-      return undefined;
-      break;
-    default:
-      return (
-        <CardWrapper isSide={props.isSide}>
-          {/* <CardTop color={props.color} />
-          <CardText>{props.title}</CardText>
-          <CardPrice>{props.price} $</CardPrice> */}
-        </CardWrapper>
-      );
-  }
+      <p>{props.cardTitle}</p>
+    </FieldCardWrapper>
+  );
 }
 
-const CardWrapper = styled.div<{
-  variant?: string;
-  isSide?: boolean;
+const FieldCardWrapper = styled.div<{
+  rowPlacement?: number;
+  columnPlacement?: number;
 }>`
-  position: relative;
-  background-color: transparent;
-  width: ${(props) =>
-    props.variant === "corner" || props.isSide
-      ? "19.9rem"
-      : "12.25rem"};
-  height: 19.9rem;
-  height: ${(props) =>
-    props.isSide ? "12.25rem" : "19.9rem"};
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-  background-color: ${(props) =>
-    props.variant ? "green" : "red"};
+  grid-row: ${(props) => props.rowPlacement ? `${props.rowPlacement}/${props.rowPlacement + 1}` : "1/2"};
+  grid-column: ${(props) => props.columnPlacement ? `${props.columnPlacement}/${props.columnPlacement + 1}` : "1/2"};
+
+  border: 1px solid black;
+
+  overflow: hidden;
 `;
 
-const CardText = styled.div`
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 2rem;
-    line-height: 110%;
-    color: black;
-    text-transform: uppercase;
-    text-align: center;
-`
+const FieldCardTop = styled.div<{
+  cardColor?: FieldPoinsColor;
+}>`
+  width: 100%;
+  height: 50px;
+
+  background-color: ${(props) => {
+    switch (props.cardColor) {
+      case "blue":
+        return "blue";
+        break;
+      case "brown":
+        return "brown";
+        break;
+      case "green":
+        return "green";
+        break;
+      case "lightBlue":
+        return "lightblue";
+        break;
+      case "orange":
+        return "orange";
+        break;
+      case "purple":
+        return "purple";
+        break;
+      case "red":
+        return "red";
+        break;
+      case "yellow":
+        return "yellow";
+        break;
+      default:
+        return undefined;
+        break;
+    }
+  }};
+`;
 
 export default FieldCard;

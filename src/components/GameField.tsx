@@ -1,292 +1,34 @@
 import styled from "styled-components";
+import { useAppSelector } from "../hooks";
 import FieldCard from "./FieldCard";
 
 function GameField() {
-  return (
-    <GameFieldWrapper>
-      <GameFieldFlex
-        direction="row"
-        fieldPosition="top"
-      >
-        <FieldCard
-          color="red"
-          title="Free Parking"
-          price={123}
-          cardType="parking"
-        />
-        <FieldCard
-          color="red"
-          title="Kentucky Avenue"
-          price={220}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-      </GameFieldFlex>
-      <GameFieldFlex
-        direction="column"
-        fieldPosition="right"
-      >
-        <FieldCard
-          color="red"
-          title="In jail"
-          price={123}
-          cardType="jail"
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-      </GameFieldFlex>
-      <GameFieldFlex
-        direction="row-reverse"
-        fieldPosition="bottom"
-      >
-        <FieldCard
-          color="red"
-          title="Salary"
-          price={123}
-          cardType="start"
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-        />
-      </GameFieldFlex>
-      <GameFieldFlex
-        direction="column-reverse"
-        fieldPosition="left"
-      >
-        <FieldCard
-          color="red"
-          title="In jail"
-          price={123}
-          cardType="jail"
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-        <FieldCard
-          color="red"
-          title="Название карточки"
-          price={123}
-          isSide={true}
-        />
-      </GameFieldFlex>
-    </GameFieldWrapper>
-  );
+  const cardsData = useAppSelector((state) => state.gameFieldPoints);
+//   const dispatch = useAppDispatch();
+
+  const cardsRenderer = () => {
+    return cardsData.map((item) => {
+        if (item.cardType === "common" && item.color) {
+            return <FieldCard key={item.id} id={item.id} cardTitle={item.cardTitle} cardType={item.cardType} color={item.color} />
+        }
+    })
+  }
+
+  return <FieldWrapper>
+    {cardsRenderer()}
+  </FieldWrapper>;
 }
 
-const GameFieldWrapper = styled.div`
-  width: 150rem;
-  height: auto;
-  aspect-ratio: 1/1;
-  background-color: #cdebd3;
-  position: relative;
-`;
+export const FieldWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 200px repeat(9, 1fr) 200px;
+  grid-template-rows: 200px repeat(9, 110px) 200px;
 
-const GameFieldFlex = styled.div<{
-  direction: "row" | "column" | "row-reverse" | "column-reverse";
-  fieldPosition: "top" | "right" | "bottom" | "left";
-}>`
-  display: flex;
-  flex-direction: ${(props) => props.direction};
-  gap: 0;
+  margin: 12px;
+  border-radius: 16px;
 
-  position: absolute;
-  top: ${(props) =>
-    props.fieldPosition === "top" ||
-    props.fieldPosition === "right"
-      ? "0"
-      : "unset"};
-  bottom: ${(props) =>
-    props.fieldPosition === "bottom" ||
-    props.fieldPosition === "left"
-      ? "0"
-      : "unset"};
-  right: ${(props) =>
-    props.fieldPosition === "right" ||
-    props.fieldPosition === "bottom"
-      ? "0"
-      : "unset"};
-  left: ${(props) =>
-    props.fieldPosition === "left" ||
-    props.fieldPosition === "top"
-      ? "0"
-      : "unset"};
+  background-color: #b6b6b6;
+  overflow: hidden;
 `;
 
 export default GameField;
